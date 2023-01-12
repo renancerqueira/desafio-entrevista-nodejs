@@ -1,7 +1,9 @@
+import { ApiTags } from '@nestjs/swagger';
 import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
 import { Establishment } from './establishment.entity';
 import { EstablishmentService } from './establishment.service';
 
+@ApiTags('Estabelecimentos')
 @Controller('establishments')
 export class EstablishmentController {
   constructor(private readonly establishmentService: EstablishmentService) {}

@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
 import { EstablishmentController } from './establishments/establishment.controller';
 import { EstablishmentModule } from './establishments/establishment.module';
@@ -14,6 +13,6 @@ import { VehicleService } from './vehicles/vehicle.service';
 @Module({
   imports: [DatabaseModule,EstablishmentModule,VehicleModule],
   controllers: [AppController,EstablishmentController,VehicleController],
-  providers: [AppService,...establishmentProviders,EstablishmentService,...vehicleProviders,VehicleService],
+  providers: [...establishmentProviders,EstablishmentService,...vehicleProviders,VehicleService],
 })
 export class AppModule {}

@@ -7,7 +7,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Parking Service')
-    .setDescription('Manager the Parking with this REST API')
+    .setDescription('Administre o estacionamento com esta REST API')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
