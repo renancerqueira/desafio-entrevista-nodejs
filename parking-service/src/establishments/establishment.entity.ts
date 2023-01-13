@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, Index, OneToMany } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import { EstablishmentVehicleFlow } from 'src/establishmentVehicleFlow/establishmentVehicleFlow.entity';
 
 @Entity()
 @Index(["cnpj"], { unique: true })
@@ -30,4 +31,7 @@ export class Establishment {
   @ApiProperty()
   @Column('int', { nullable: false })
   quantidadeVagasCarros: number;
+
+  @OneToMany(() => EstablishmentVehicleFlow, establishmentVehicleFlow => establishmentVehicleFlow.establishment)
+  establishmentVehicleFlow: EstablishmentVehicleFlow[];
 }

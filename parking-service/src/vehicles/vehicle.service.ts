@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, ConflictException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Vehicle } from './vehicle.entity';
 
@@ -24,5 +24,18 @@ export class VehicleService {
 
   async delete(id: number) {
     return this.vehicleRepository.delete(id);
+  }
+
+  async obterSeDisponivelParaEstacionar(placa: string): Promise<Vehicle> {
+    const vehicle = await this.vehicleRepository.findOne({
+      relations: { establishmentVehicleFlow: true },
+      where: {
+        placa: placa
+      }});
+    
+    if (vehicle.establishmentVehicleFlow.some(x => x.dataSaida == null))
+      throw new ConflictException("Veículo já estacionado. Não é possível efetuar o check in deste veículo. Faça o check out primeiro.");
+    
+    return vehicle;
   }
 }

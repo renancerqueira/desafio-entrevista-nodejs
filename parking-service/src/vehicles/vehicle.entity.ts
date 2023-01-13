@@ -1,5 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, Index, OneToMany } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import { EstablishmentVehicleFlow } from 'src/establishmentVehicleFlow/establishmentVehicleFlow.entity';
+import { VehicleType } from './vehicleType.enum';
 
 @Entity()
 @Index(["placa"], { unique: true })
@@ -20,6 +22,12 @@ export class Vehicle {
   placa: string;
 
   @ApiProperty()
-  @Column({ length: 20, nullable: false })
-  tipo: string;
+  @Column({
+    length: Object.values(VehicleType).reduce((a, b) => a.length > b.length ? a : b).length, //Obtem o tamanho do maior item do enum
+    nullable: false
+  })
+  tipo: VehicleType;
+
+  @OneToMany(() => EstablishmentVehicleFlow, establishmentVehicleFlow => establishmentVehicleFlow.vehicle)
+  establishmentVehicleFlow: EstablishmentVehicleFlow[];
 }
