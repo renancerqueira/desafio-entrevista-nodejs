@@ -1,8 +1,11 @@
-import { ApiTags } from '@nestjs/swagger';
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards } from '@nestjs/common';
 import { Vehicle } from './vehicle.entity';
 import { VehicleService } from './vehicle.service';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @ApiTags('Veículos')
 @Controller('vehicles')
 export class VehicleController {

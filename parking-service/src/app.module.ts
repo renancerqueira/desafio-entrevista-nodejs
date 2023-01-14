@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
 import { DatabaseModule } from './database/database.module';
 import { EstablishmentController } from './establishments/establishment.controller';
@@ -13,13 +14,17 @@ import { VehicleController } from './vehicles/vehicle.controller';
 import { VehicleModule } from './vehicles/vehicle.module';
 import { vehicleProviders } from './vehicles/vehicle.providers';
 import { VehicleService } from './vehicles/vehicle.service';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
     DatabaseModule,
+    AuthModule,
+    UsersModule,
     EstablishmentModule,
     VehicleModule,
-    EstablishmentVehicleFlowModule],
+    EstablishmentVehicleFlowModule,
+    ],
   controllers: [
     AppController,
     EstablishmentController,

@@ -1,10 +1,13 @@
-import { ApiTags } from '@nestjs/swagger';
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { EstablishmentVehicleFlowService } from './establishmentVehicleFlow.service';
 import { EstablishmentVehicleFlow } from './establishmentVehicleFlow.entity';
 import { VehicleCheckInDto } from './dtos/vehicleCheckIn.dto';
 import { VehicleCheckOutDto } from './dtos/vehicleCheckOut.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @ApiTags('Fluxo de Veículos no Estabelecimento')
 @Controller('establishmentVehicleFlow')
 export class EstablishmentVehicleFlowController {

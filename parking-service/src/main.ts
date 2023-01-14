@@ -9,6 +9,7 @@ async function bootstrap() {
     .setTitle('Parking Service')
     .setDescription('Administre o estacionamento com esta REST API')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
