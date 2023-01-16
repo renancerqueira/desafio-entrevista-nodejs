@@ -1,7 +1,7 @@
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Controller, Post, Body, UseGuards } from '@nestjs/common';
-import { EstablishmentVehicleFlowService } from './establishmentVehicleFlow.service';
-import { EstablishmentVehicleFlow } from './establishmentVehicleFlow.entity';
+import { EstablishmentVehicleFlowService } from './establishment-vehicle-flow.service';
+import { EstablishmentVehicleFlow } from './establishment-vehicle-flow.entity';
 import { VehicleCheckInDto } from './dtos/vehicleCheckIn.dto';
 import { VehicleCheckOutDto } from './dtos/vehicleCheckOut.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
@@ -9,7 +9,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @ApiTags('Fluxo de Veículos no Estabelecimento')
-@Controller('establishmentVehicleFlow')
+@Controller('establishment-vehicle-flow')
 export class EstablishmentVehicleFlowController {
   constructor(private readonly establishmentVehicleFlowService: EstablishmentVehicleFlowService) {}
 

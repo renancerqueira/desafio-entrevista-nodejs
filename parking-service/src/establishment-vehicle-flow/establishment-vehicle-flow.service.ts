@@ -1,19 +1,19 @@
 import { Injectable, Inject, NotAcceptableException, NotFoundException } from '@nestjs/common';
 import { Establishment } from 'src/establishments/establishment.entity';
-import { EstablishmentService } from 'src/establishments/establishment.service';
-import { Vehicle } from 'src/vehicles/vehicle.entity';
-import { VehicleService } from 'src/vehicles/vehicle.service';
+import { EstablishmentService } from 'src/establishments/establishments.service';
+import { VehiclesService } from 'src/vehicles/vehicles.service';
 import { Repository } from 'typeorm';
 import { VehicleCheckInDto } from './dtos/vehicleCheckIn.dto';
 import { VehicleCheckOutDto } from './dtos/vehicleCheckOut.dto';
-import { EstablishmentVehicleFlow } from './establishmentVehicleFlow.entity';
+import { EstablishmentVehicleFlow } from './establishment-vehicle-flow.entity';
+import { GetEstablishmentVehicleFlowProvideName } from './establishment-vehicle-flow.providers';
 
 @Injectable()
 export class EstablishmentVehicleFlowService {
   constructor(
-    @Inject('ESTABLISHMENTVEHICLEFLOW_REPOSITORY')
+    @Inject(GetEstablishmentVehicleFlowProvideName())
     private establishmentVehicleFlowRepository: Repository<EstablishmentVehicleFlow>,
-    private vehicleService: VehicleService,
+    private vehicleService: VehiclesService,
     private establishmentService: EstablishmentService,
   ) {}
 

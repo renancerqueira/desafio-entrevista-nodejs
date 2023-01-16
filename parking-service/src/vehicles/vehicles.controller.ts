@@ -1,15 +1,15 @@
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards } from '@nestjs/common';
 import { Vehicle } from './vehicle.entity';
-import { VehicleService } from './vehicle.service';
+import { VehiclesService } from './vehicles.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @ApiTags('Veículos')
 @Controller('vehicles')
-export class VehicleController {
-  constructor(private readonly vehicleService: VehicleService) {}
+export class VehiclesController {
+  constructor(private readonly vehicleService: VehiclesService) {}
 
   @Get()
   getAll(): Promise<Vehicle[]> {

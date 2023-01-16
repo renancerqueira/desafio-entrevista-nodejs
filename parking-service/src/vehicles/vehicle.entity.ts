@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, Index, OneToMany } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { EstablishmentVehicleFlow } from 'src/establishmentVehicleFlow/establishmentVehicleFlow.entity';
+import { EstablishmentVehicleFlow } from 'src/establishment-vehicle-flow/establishment-vehicle-flow.entity';
 import { VehicleType } from './vehicleType.enum';
 
 @Entity()

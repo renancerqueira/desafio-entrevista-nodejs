@@ -1,14 +1,14 @@
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards } from '@nestjs/common';
 import { Establishment } from './establishment.entity';
-import { EstablishmentService } from './establishment.service';
+import { EstablishmentService } from './establishments.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @ApiTags('Estabelecimentos')
 @Controller('establishments')
-export class EstablishmentController {
+export class EstablishmentsController {
   constructor(private readonly establishmentService: EstablishmentService) {}
 
   @Get()

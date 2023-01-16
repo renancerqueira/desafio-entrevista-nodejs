@@ -1,11 +1,12 @@
 import { Injectable, Inject, ConflictException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Vehicle } from './vehicle.entity';
+import { GetVehicleProvideName } from './vehicles.providers';
 
 @Injectable()
-export class VehicleService {
+export class VehiclesService {
   constructor(
-    @Inject('VEHICLE_REPOSITORY')
+    @Inject(GetVehicleProvideName())
     private vehicleRepository: Repository<Vehicle>,
   ) {}
 

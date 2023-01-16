@@ -2,19 +2,21 @@ import { Module } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
 import { DatabaseModule } from './database/database.module';
-import { EstablishmentController } from './establishments/establishment.controller';
-import { EstablishmentModule } from './establishments/establishment.module';
-import { establishmentProviders } from './establishments/establishment.providers';
-import { EstablishmentService } from './establishments/establishment.service';
-import { EstablishmentVehicleFlowController } from './establishmentVehicleFlow/establishmentVehicleFlow.controller';
-import { EstablishmentVehicleFlowModule } from './establishmentVehicleFlow/establishmentVehicleFlow.module';
-import { establishmentVehicleFlowProviders } from './establishmentVehicleFlow/establishmentVehicleFlow.providers';
-import { EstablishmentVehicleFlowService } from './establishmentVehicleFlow/establishmentVehicleFlow.service';
-import { VehicleController } from './vehicles/vehicle.controller';
-import { VehicleModule } from './vehicles/vehicle.module';
-import { vehicleProviders } from './vehicles/vehicle.providers';
-import { VehicleService } from './vehicles/vehicle.service';
+import { EstablishmentsController } from './establishments/establishments.controller';
+import { EstablishmentModule } from './establishments/establishments.module';
+import { establishmentProviders } from './establishments/establishments.providers';
+import { EstablishmentService } from './establishments/establishments.service';
+import { EstablishmentVehicleFlowController } from './establishment-vehicle-flow/establishment-vehicle-flow.controller';
+import { EstablishmentVehicleFlowModule } from './establishment-vehicle-flow/establishment-vehicle-flow.module';
+import { establishmentVehicleFlowProviders } from './establishment-vehicle-flow/establishment-vehicle-flow.providers';
+import { EstablishmentVehicleFlowService } from './establishment-vehicle-flow/establishment-vehicle-flow.service';
+import { VehiclesController } from './vehicles/vehicles.controller';
+import { VehicleModule } from './vehicles/vehicles.module';
+import { vehicleProviders } from './vehicles/vehicles.providers';
+import { VehiclesService } from './vehicles/vehicles.service';
 import { UsersModule } from './users/users.module';
+import { ReportsController } from './reports/reports.controller';
+import { EstablishmentVehicleFlow } from './establishment-vehicle-flow/establishment-vehicle-flow';
 
 @Module({
   imports: [
@@ -27,15 +29,17 @@ import { UsersModule } from './users/users.module';
     ],
   controllers: [
     AppController,
-    EstablishmentController,
-    VehicleController,
-    EstablishmentVehicleFlowController],
+    EstablishmentsController,
+    VehiclesController,
+    EstablishmentVehicleFlowController,
+    ReportsController],
   providers: [
     ...establishmentProviders,
     EstablishmentService,
     ...vehicleProviders,
-    VehicleService,
+    VehiclesService,
     ...establishmentVehicleFlowProviders,
-    EstablishmentVehicleFlowService],
+    EstablishmentVehicleFlowService,
+    EstablishmentVehicleFlow],
 })
 export class AppModule {}

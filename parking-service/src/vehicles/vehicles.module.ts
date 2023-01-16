@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../database/database.module';
-import { vehicleProviders } from './vehicle.providers';
-import { VehicleService } from './vehicle.service';
+import { vehicleProviders } from './vehicles.providers';
+import { VehiclesService } from './vehicles.service';
 
 @Module({
   imports: [DatabaseModule],
   providers: [
     ...vehicleProviders,
-    VehicleService,
+    VehiclesService,
   ],
 })
 export class VehicleModule {}
