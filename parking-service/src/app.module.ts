@@ -16,9 +16,11 @@ import { vehicleProviders } from './vehicles/vehicles.providers';
 import { VehiclesService } from './vehicles/vehicles.service';
 import { UsersModule } from './users/users.module';
 import { ReportsController } from './reports/reports.controller';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     DatabaseModule,
     AuthModule,
     UsersModule,

@@ -31,7 +31,7 @@ You can administrate your parcking with this API.
 
 ## Dependencies
 
-After clone, configure your local database connection in the file `./src/database/database.providers.ts`.
+After clone, configure your local database connection in the file `.env`.
 
 ## Installation
 
