@@ -24,7 +24,14 @@
 
 ## Description
 
+A REST API makes to nodejs interview challange.
+You can administrate your parcking with this API.
+
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+## Dependencies
+
+After clone, configure your local database connection in the file `./src/database/database.providers.ts`.
 
 ## Installation
 
@@ -35,15 +42,23 @@ $ npm install
 ## Running the app
 
 ```bash
-# development
 $ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
+
+- When app is running, access swagger documentation to try some endpoints: <a href="http://localhost:3000/api#/Home/AppController_login" target="_blank">Swagger Documentation</a>
+
+- To login, try the `/auth/login` endpoint with credentials:
+```json
+{
+  "username": "john",
+  "password": "changeme"
+}
+```
+
+- Copy the `access_token` from response body, click on green swagger <b>Authorize</b> button, on the right top of swagger page, and paste on the value input. Click on Authorize and then Close.
+
+Done! You ready to use all endpoints. Enjoy it.
+
 
 ## Test
 
