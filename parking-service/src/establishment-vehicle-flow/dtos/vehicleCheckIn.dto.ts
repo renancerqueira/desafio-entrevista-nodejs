@@ -6,4 +6,9 @@ export class VehicleCheckInDto {
 
     @ApiProperty()
     vehiclePlate: string;
+
+    constructor(idEstablishment: number, vehiclePlate: string){
+        this.idEstablishment = idEstablishment;
+        this.vehiclePlate = vehiclePlate;
+    }
 }

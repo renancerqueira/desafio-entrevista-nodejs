@@ -1,7 +1,7 @@
 import { Injectable, Inject, NotAcceptableException, NotFoundException } from '@nestjs/common';
-import { Establishment } from 'src/establishments/establishment.entity';
-import { EstablishmentService } from 'src/establishments/establishments.service';
-import { VehiclesService } from 'src/vehicles/vehicles.service';
+import { Establishment } from '../establishments/establishment.entity';
+import { EstablishmentService } from '../establishments/establishments.service';
+import { VehiclesService } from '../vehicles/vehicles.service';
 import { Between, IsNull, Repository } from 'typeorm';
 import { VehicleCheckInDto } from './dtos/vehicleCheckIn.dto';
 import { VehicleCheckInAndCheckOutVolumeDto } from './dtos/VehicleCheckInAndCheckOutVolume.dto';

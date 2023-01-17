@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { VehicleType } from 'src/vehicles/vehicleType.enum';
+import { VehicleType } from '../vehicles/vehicleType.enum';
 import { Repository } from 'typeorm';
 import { Establishment } from './establishment.entity';
 import { GetEstablishmentProvideName } from './establishments.providers';

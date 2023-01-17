@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Vehicle } from './vehicle.entity';
-import { databaseProviders } from 'src/database/database.providers';
+import { databaseProviders } from '../database/database.providers';
 
 export const vehicleProviders = [
   {

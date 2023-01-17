@@ -1,7 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn, Index, OneToMany } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { EstablishmentVehicleFlow } from 'src/establishment-vehicle-flow/establishment-vehicle-flow.entity';
+import { EstablishmentVehicleFlow } from '../establishment-vehicle-flow/establishment-vehicle-flow.entity';
 import { VehicleType } from './vehicleType.enum';
+import { stringify } from 'querystring';
 
 @Entity()
 @Index(["placa"], { unique: true })

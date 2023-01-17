@@ -1,5 +1,5 @@
-import { GetDataSourceProvideName } from 'src/database/database.providers';
-import { Establishment } from 'src/establishments/establishment.entity';
+import { GetDataSourceProvideName } from '../database/database.providers';
+import { Establishment } from '../establishments/establishment.entity';
 import { DataSource } from 'typeorm';
 
 export const reportProviders = [

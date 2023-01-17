@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { Vehicle } from 'src/vehicles/vehicle.entity';
-import { Establishment } from 'src/establishments/establishment.entity';
+import { Vehicle } from '../vehicles/vehicle.entity';
+import { Establishment } from '../establishments/establishment.entity';
 
 @Entity()
 export class EstablishmentVehicleFlow {

@@ -4,7 +4,7 @@ import { EstablishmentVehicleFlowService } from './establishment-vehicle-flow.se
 import { EstablishmentVehicleFlow } from './establishment-vehicle-flow.entity';
 import { VehicleCheckInDto } from './dtos/vehicleCheckIn.dto';
 import { VehicleCheckOutDto } from './dtos/vehicleCheckOut.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)

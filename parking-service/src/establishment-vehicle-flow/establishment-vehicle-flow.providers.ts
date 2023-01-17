@@ -1,4 +1,4 @@
-import { GetDataSourceProvideName } from 'src/database/database.providers';
+import { GetDataSourceProvideName } from '../database/database.providers';
 import { DataSource } from 'typeorm';
 import { EstablishmentVehicleFlow } from './establishment-vehicle-flow.entity';
 
