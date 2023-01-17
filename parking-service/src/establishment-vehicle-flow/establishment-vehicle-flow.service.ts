@@ -2,8 +2,10 @@ import { Injectable, Inject, NotAcceptableException, NotFoundException } from '@
 import { Establishment } from 'src/establishments/establishment.entity';
 import { EstablishmentService } from 'src/establishments/establishments.service';
 import { VehiclesService } from 'src/vehicles/vehicles.service';
-import { Repository } from 'typeorm';
+import { Between, IsNull, Repository } from 'typeorm';
 import { VehicleCheckInDto } from './dtos/vehicleCheckIn.dto';
+import { VehicleCheckInAndCheckOutVolumeDto } from './dtos/VehicleCheckInAndCheckOutVolume.dto';
+import { VehicleCheckInAndCheckOutVolumeFilter } from './dtos/vehicleCheckInAndCheckOutVolumeFilter.dto';
 import { VehicleCheckOutDto } from './dtos/vehicleCheckOut.dto';
 import { EstablishmentVehicleFlow } from './establishment-vehicle-flow.entity';
 import { GetEstablishmentVehicleFlowProvideName } from './establishment-vehicle-flow.providers';
@@ -60,5 +62,29 @@ export class EstablishmentVehicleFlowService {
     await this.establishmentVehicleFlowRepository.update(establishmentVehicleFlow.id, establishmentVehicleFlow);
 
     return establishmentVehicleFlow;
+  }
+
+  async vehicleCheckInAndCheckOutVolume(filter: VehicleCheckInAndCheckOutVolumeFilter): Promise<VehicleCheckInAndCheckOutVolumeDto> {
+    const result = new VehicleCheckInAndCheckOutVolumeDto();
+
+    result.checkInVolume = await this.establishmentVehicleFlowRepository.count({
+      where: {
+        dataEntrada: Between(filter.dtStart, filter.dtEnd),
+        dataSaida: IsNull()
+      }
+    });
+
+    result.checkOutVolume = await this.establishmentVehicleFlowRepository.count({
+      where: {
+        dataSaida: Between(filter.dtStart, filter.dtEnd)
+      }
+    });
+    
+    var hours = Math.abs(filter.dtEnd.getTime() - filter.dtStart.getTime()) / 36e5;
+    
+    result.checkInVolumePerHour = parseFloat(Math.abs(result.checkInVolume / hours).toFixed(2));
+    result.checkOutVolumePerHour = parseFloat(Math.abs(result.checkOutVolume / hours).toFixed(2));
+
+    return result;
   }
 }

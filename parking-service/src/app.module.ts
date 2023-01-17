@@ -17,6 +17,7 @@ import { VehiclesService } from './vehicles/vehicles.service';
 import { UsersModule } from './users/users.module';
 import { ReportsController } from './reports/reports.controller';
 import { EstablishmentVehicleFlow } from './establishment-vehicle-flow/establishment-vehicle-flow';
+import { ReportsService } from './reports/reports.service';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { EstablishmentVehicleFlow } from './establishment-vehicle-flow/establish
     VehiclesService,
     ...establishmentVehicleFlowProviders,
     EstablishmentVehicleFlowService,
-    EstablishmentVehicleFlow],
+    EstablishmentVehicleFlow,
+    ReportsService],
 })
 export class AppModule {}
