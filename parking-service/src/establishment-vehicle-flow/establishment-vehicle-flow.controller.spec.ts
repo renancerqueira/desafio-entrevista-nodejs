@@ -1,10 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DataSource } from 'typeorm';
+import { EstablishmentService } from '../establishments/establishments.service';
+import { VehiclesService } from '../vehicles/vehicles.service';
+import { GetDataSourceProvideName } from '../database/database.providers';
+import { dataSourceMockFactory } from '../database/datasourse.mock';
 import { VehicleCheckInDto } from './dtos/vehicleCheckIn.dto';
 import { EstablishmentVehicleFlowController } from './establishment-vehicle-flow.controller';
 import { EstablishmentVehicleFlowFactory } from './establishment-vehicle-flow.factory';
 import { establishmentVehicleFlowProviders } from './establishment-vehicle-flow.providers';
 import { EstablishmentVehicleFlowService } from './establishment-vehicle-flow.service';
+import { vehicleProviders } from '../vehicles/vehicles.providers';
+import { establishmentProviders } from '../establishments/establishments.providers';
 
 describe('EstablishmentVehicleFlowController', () => {
   let controller: EstablishmentVehicleFlowController;
@@ -12,7 +17,7 @@ describe('EstablishmentVehicleFlowController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [EstablishmentVehicleFlowController],
-      providers: [DataSource, ...establishmentVehicleFlowProviders, EstablishmentVehicleFlowService]
+      providers: [{ provide: GetDataSourceProvideName(), useFactory: dataSourceMockFactory }, ...establishmentVehicleFlowProviders, EstablishmentVehicleFlowService, ...vehicleProviders, VehiclesService, ...establishmentProviders, EstablishmentService]
     }).compile();
 
     controller = module.get<EstablishmentVehicleFlowController>(EstablishmentVehicleFlowController);

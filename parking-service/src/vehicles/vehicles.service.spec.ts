@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DataSource } from 'typeorm';
-import { DatabaseModule } from '../database/database.module';
-import { Vehicle } from './vehicle.entity';
+import { GetDataSourceProvideName } from '../database/database.providers';
+import { dataSourceMockFactory } from '../database/datasourse.mock';
 import { VehicleFactory } from './vehicle.factory';
 import { VehicleModule } from './vehicles.module';
 import { vehicleProviders } from './vehicles.providers';
@@ -13,7 +12,7 @@ describe('VehiclesService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [DataSource, VehicleModule, ...vehicleProviders, VehiclesService],
+      providers: [{ provide: GetDataSourceProvideName(), useFactory: dataSourceMockFactory }, VehicleModule, ...vehicleProviders, VehiclesService],
     }).compile();
 
     service = module.get<VehiclesService>(VehiclesService);

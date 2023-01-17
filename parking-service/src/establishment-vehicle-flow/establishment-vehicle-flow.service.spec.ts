@@ -1,5 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DataSource } from 'typeorm';
+import { establishmentProviders } from '../establishments/establishments.providers';
+import { EstablishmentService } from '../establishments/establishments.service';
+import { vehicleProviders } from '../vehicles/vehicles.providers';
+import { VehiclesService } from '../vehicles/vehicles.service';
+import { GetDataSourceProvideName } from '../database/database.providers';
+import { dataSourceMockFactory } from '../database/datasourse.mock';
 import { EstablishmentVehicleFlowFactory } from './establishment-vehicle-flow.factory';
 import { EstablishmentVehicleFlowModule } from './establishment-vehicle-flow.module';
 import { establishmentVehicleFlowProviders } from './establishment-vehicle-flow.providers';
@@ -10,7 +15,7 @@ describe('EstablishmentVehicleFlowService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [DataSource, EstablishmentVehicleFlowModule, ...establishmentVehicleFlowProviders, EstablishmentVehicleFlowService],
+      providers: [{ provide: GetDataSourceProvideName(), useFactory: dataSourceMockFactory }, ...establishmentVehicleFlowProviders, EstablishmentVehicleFlowService, ...establishmentProviders, EstablishmentService, ...vehicleProviders, VehiclesService],
     }).compile();
 
     service = module.get<EstablishmentVehicleFlowService>(EstablishmentVehicleFlowService);
