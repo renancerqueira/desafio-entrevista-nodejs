@@ -1,0 +1,23 @@
+steps:
+  - name: 'Build image'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME', '.']
+  - name: 'Push image to registry'
+    args: ['push', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME']
+  - name: 'Deploy to cloud run'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'cloud-run'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME'
+      - '--region'
+      - '$_REGION'
+      - '--platform'
+      - 'managed'
+      - '--no-allow-unauthenticated'
+images:
+  - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME'
+substitutions:
+  _SERVICE_NAME: "desafio-entrevista-nodejs"
+  _REGION: "us-central1"
+  PROJECT_ID: "master-bulwark-375000"
