@@ -15,8 +15,8 @@ export const databaseProviders = [
         entities: [
             __dirname + '/../**/*.entity{.ts,.js}',
         ],
-        synchronize: process.env.DATABASE_DBNAME === 'true',
-        logging: process.env.DATABASE_DBNAME === 'true',
+        synchronize: process.env.DATABASE_SYNCHRONIZE === 'true',
+        logging: process.env.DATABASE_LOGGING === 'true',
       });
 
       return dataSource.initialize();

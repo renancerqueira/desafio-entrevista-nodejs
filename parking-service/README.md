@@ -29,21 +29,32 @@ You can administrate your parcking with this API.
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Dependencies
+## Running
 
-After clone, configure your local database connection in the file `.env`.
+After clone, build the docker image:
 
-## Installation
+```bash
+$ docker build --tag "parking-app" .
+```
+
+Then, run docker compose up:
+
+```bash
+$ docker-compose up
+```
+
+## Running local
+
+Change `.env.local` file with your database local settings.
+
+Then, run these commands:
 
 ```bash
 $ npm install
+$ nest start
 ```
 
-## Running the app
-
-```bash
-$ npm run start
-```
+## Using
 
 - When app is running, access swagger documentation to try some endpoints: <a href="http://localhost:3000/api#/Home/AppController_login" target="_blank">Swagger Documentation</a>
 

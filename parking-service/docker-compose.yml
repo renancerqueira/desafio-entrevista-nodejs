@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  app:
+    image: parking-app
+    container_name: parking-app
+    restart: always
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - '3000:3000'
+    networks:
+      - default
+    depends_on:
+      - db_docker
+
+  db_docker:
+    image: mysql:8
+    container_name: parking-db
+    command: --innodb_use_native_aio=0
+    restart: always
+    tty: true
+    volumes:
+      - ./.docker/mysql/dbdata:/var/lib/mysql
+      - ./.docker/mysql:/docker-entrypoint-initdb.d
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=docker
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
